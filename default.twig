@@ -1,0 +1,214 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+{% include "menu-data.twig" %}
+
+<header>
+    <div class="wrapper clearfix">
+        <div class="companyheader clearfix">
+            {{widget('logo', 'logo', {"defaultlogo": asset('images/logo.png')})|raw}}
+            {{widget('companyname', 'companyname', {"business": "profile"})|raw}}
+        </div>
+        {{widget('extendednavigation', 'navigationheader', {})|raw}}
+    </div>
+
+    <style>
+        .menu-name {
+            font-size: 2.5em;
+        }
+
+        .menu-items,
+        .menu-item-prices,
+        .menu-sections,
+        .menu-section-items,
+        .menu-section-item-prices {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-header,
+        .menu-section-header {
+            margin-bottom: 2em;
+        }
+
+        .menu-item,
+        .menu-section-item {
+            margin-bottom: 3.5em;
+            position: relative;
+            background: #f7f7f7;
+            padding: 1em;
+            border-radius: 2px;
+        }
+
+        .menu-item-name,
+        .menu-section-item-name {
+            font-size: 1.65em;
+            margin-bottom: 0.5em;
+        }
+
+        .menu-section-name {
+            font-size: 2em;
+            margin-top: 2.5em;
+        }
+
+        .menu-item-description,
+        .menu-section-item-description {
+            margin-bottom: 1em;
+        }
+
+        .menu-item-promoted {
+            background: #f1f2eb;
+            border: 4px solid rgba(153, 153, 6, 0.15);
+        }
+
+        .menu-item-promoted:after {
+            content: "★";
+            font-size: 2em;
+            position: absolute;
+            top: 0.5em;
+            right: 0.5em;
+            color: rgb(153, 153, 6);
+        }
+
+        .standard-price {
+            float: right;
+            font-size: 1.15em;
+            font-style: italic;
+            color: #5c5c5c;
+        }
+
+    </style>
+</header>
+
+{% set menu = plugins.menu %}
+
+    <div class="main wrapper clearfix">
+        <div class="menu-header">
+            <h1 class="menu-name">{{ menu.name }}</h1>
+
+            {% if menu.description is not null %}
+                <p class="menu-description">{{ menu.description }}</p>
+            {% endif %}
+
+            {% if menu.availability %}
+                <p class="menu-availability">{{ menu.availability }}</p>
+            {% endif %}
+        </div>
+
+        {% if menu.items|length %}
+            <ol class="menu-items">
+                {% for item in menu.items %}
+                    <li class="menu-item{% if item.promoted %} menu-item-promoted{% endif %}">
+                        <h3 class="menu-item-name">{{ item.name }}</h3>
+                        {% if item.prices|length %}
+                            <ol class="menu-item-prices">
+                                {% for price in item.prices %}
+                                    <li class="menu-item-price">
+                                        {% if price.name == '' %}
+                                            <p class="standard-price">{{ price.price }}</p>
+                                        {% else %}
+                                            <p class="variant-price">{{ price.name }} {{ price.price }}</p>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {% endif %}
+
+                        {% if item.imageURL is not null %}
+                            <img class="menu-item-image" alt="" src="{{ item.imageURL }}">
+                        {% endif %}
+
+                        {% if item.description is not null %}
+                            <p class="menu-item-description">{{ item.description }}</p>
+                        {% endif %}
+
+                        {% if item.nutritionalProperties|length %}
+                            <h4 class="menu-item-nutritional-title">Nutritional information</h4>
+                            <ul class="menu-item-nutritional-props">
+                                {% for prop in item.nutritionalProperties %}
+                                    <li class="menu-item-nutritional-prop"><p>{{ prop }}</p></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+
+        {% if menu.sections|length %}
+            <ol class="menu-sections">
+                {% for section in menu.sections %}
+                    <li class="menu-section">
+                        <div class="menu-section-header">
+                            <h2 class="menu-section-name">{{ section.name }}</h2>
+                            {% if section.availability is not null %}
+                                <p class="menu-section-availability">{{ section.availability }}</p>
+                            {% endif %}
+                            {% if section.description is not null %}
+                                <p class="menu-section-description">{{ section.description }}</p>
+                            {% endif %}
+                        </div>
+
+                        {% if section.items|length %}
+                            <ol class="menu-section-items">
+                                {% for item in section.items %}
+                                    <li class="menu-section-item{% if item.promoted %} menu-item-promoted{% endif %}">
+                                        <h3 class="menu-section-item-name">{{ item.name }}</h3>
+                                        {% if item.prices|length %}
+                                            <ol class="menu-section-item-prices">
+                                                {% for price in item.prices %}
+                                                    <li class="menu-section-item-price">
+                                                        {% if price.name == '' %}
+                                                            <p class="standard-price">{{ price.price }}</p>
+                                                        {% else %}
+                                                            <p class="variant-price">{{ price.name }} {{ price.price }}</p>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ol>
+                                        {% endif %}
+
+                                        {% if item.imageURL is not null %}
+                                            <img class="menu-section-item-image" alt="" src="{{ item.imageURL }}">
+                                        {% endif %}
+
+                                        {% if item.description is not null %}
+                                            <p class="menu-section-item-description">{{ item.description }}</p>
+                                        {% endif %}
+
+                                        {% if item.nutritionalProperties|length %}
+                                            <h4 class="menu-section-item-nutritional-title">Nutritional information</h4>
+                                            <ul class="menu-section-item-nutritional-props">
+                                                {% for prop in item.nutritionalProperties %}
+                                                    <li class="menu-section-item-nutritional-prop"><p>{{ prop }}</p></li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+    </div>
+
+<footer>
+    <div class="wrapper clearfix">
+        <div class="responsivecolumns columns-two-50-50">
+            <div class="column columns-two-left">
+                {{widget('content', 'footercolumn1', {"content":"<h2>Lorem Ip Soda</h2><p>Integer a Tortor Dui. Nullam nec ante mi. Morbi sodales urna sit amet mauris elementum quis rutrum lacus gravida. Proin feugia libero quis.</p>"})|raw}}
+            </div>
+            <div class="column columns-two-right">
+                {{widget('content', 'footercolumn2', {"content":"<h2>Aliquam Sodales</h2><p>Copyright © 2013. All Rights Reserved.</p>"})|raw}}
+
+                {{widget('socialicons', 'socialicons', {'googleplus': 'https://plus.google.com/101946323226233111530', 'linkedin':'http://www.linkedin.com/company/basekit', 'facebook': 'https://www.facebook.com/TeamBaseKit', 'twitter': 'https://twitter.com/basekit', 'youtube': 'https://www.youtube.com/user/TeamBaseKit', 'rss': 'http://blogdiseno.basekit.es/feed/'})|raw}}
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
