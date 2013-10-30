@@ -79,6 +79,29 @@
             color: #5c5c5c;
         }
 
+        .dietary-icon {
+            display: inline-block;
+            height: 1em;
+            width: 1em;
+        }
+
+        .menu-section-item-dietary-props .dietary-icon {
+            margin-right: 0.5em;
+        }
+
+        .vegetarian-icon {
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiPjx0aXRsZT52ZWdldGFyaWFuPC90aXRsZT48dGV4dCBza2V0Y2g6dHlwZT0iTVNUZXh0TGF5ZXIiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtZmFtaWx5PSJVYnVudHUiIGZpbGw9IiMxN0Q4OTMiPjx0c3BhbiB4PSIyIiB5PSIxNCI+VjwvdHNwYW4+PC90ZXh0Pjwvc3ZnPg==');
+        }
+
+        .glutenFree-icon {
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiPjx0aXRsZT5nbHV0ZW4tZnJlZTwvdGl0bGU+PHRleHQgc2tldGNoOnR5cGU9Ik1TVGV4dExheWVyIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iVWJ1bnR1IiBmaWxsPSIjNDk0QTUyIiBmb250LXdlaWdodD0iNDIwIj48dHNwYW4geD0iMCIgeT0iMTMiPkdmPC90c3Bhbj48L3RleHQ+PC9zdmc+');
+        }
+
+        dt,
+        dd {
+            display: inline-block;
+        }
+
     </style>
 </header>
 
@@ -131,6 +154,16 @@
                                     <li class="menu-item-nutritional-prop"><p>{{ prop }}</p></li>
                                 {% endfor %}
                             </ul>
+                        {% endif %}
+
+                        {% if item.dietaryInfo|length %}
+                            <div class="menu-section-item-dietary-props">
+                                {% for key, value in item.dietaryInfo %}
+                                    {% if value == 1 %}
+                                        <span class="{{ key }}-icon dietary-icon"></span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         {% endif %}
                     </li>
                 {% endfor %}
@@ -186,6 +219,16 @@
                                                 {% endfor %}
                                             </ul>
                                         {% endif %}
+
+                                        {% if item.dietaryInfo|length %}
+                                            <div class="menu-section-item-dietary-props">
+                                                {% for key, value in item.dietaryInfo %}
+                                                    {% if value == 1 %}
+                                                        <span class="{{ key }}-icon dietary-icon"></span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </li>
                                 {% endfor %}
                             </ol>
@@ -193,6 +236,24 @@
                     </li>
                 {% endfor %}
             </ol>
+        {% endif %}
+        {% if menu.note is not null %}
+            <p class="menu-note">{{ menu.note }}</p>
+        {% endif %}
+        {% if menu.dietaryInfoKeys|length %}
+            {% for key in menu.dietaryInfoKeys %}
+                {% if key == 'vegetarian' %}
+                    <dl class="menu-dietary-key">
+                        <dt class="vegetarian-icon dietary-icon"></dt>
+                        <dd>Suitable for vegetarians</dd>
+                    </dl>
+                {% elseif key == 'glutenFree' %}
+                    <dl class="menu-dietary-key">
+                        <dt class="glutenFree-icon dietary-icon"></dt>
+                        <dd>Gluten free</dd>
+                    </dl>
+                {% endif %}
+            {% endfor %}
         {% endif %}
     </div>
 
