@@ -4,6 +4,10 @@
 
 {% include "menu-data.twig" %}
 
+<div class="top-nav">  
+            {{widget('extendednavigation', 'topnavigation', {})|raw}}
+</div> 
+
 <header>
     <div class="wrapper clearfix">
         <div class="companyheader clearfix">
@@ -21,9 +25,9 @@
         <div class="booking-button">
             {{widget('button', 'button', {italic: false, text:'Booking form', 'align':'widget-align-center'})|raw}}
         </div>
-          
-            {{widget('extendednavigation', 'navigationheader', {})|raw}}
-          
+        <div class="desktop-nav">  
+            {{widget('extendednavigation', 'desktopnavigation', {})|raw}}
+        </div> 
     </div>
 </header>
 
