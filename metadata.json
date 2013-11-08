@@ -11,12 +11,12 @@
     {
         "Swatch 1": {
             "color1":"#ffffff",
-            "color2":"#fbac71",
-            "color3":"#63b29f",
-            "color4":"#838383",
-            "color5":"#acacac",
-            "color6":"#ffffff",
-            "color7":"#1f1f1f"
+            "color2":"#730d38",
+            "color3":"#ba8799",
+            "color4":"#ba8799",
+            "color5":"#730d38",
+            "color6":"#ba8799",
+            "color7":"#ffffff"
         },
         "Swatch 2": {
             "color1":"#ffffff",
@@ -58,87 +58,87 @@
     "fontSwatch": {
        "title": "Open Sans",
         "font1": {
-            "font-family": "Merriweather",
-            "font-size": "16px",
-            "font-weight": "300",
-            "line-height": "24px",
+            "font-family": "Oswald",
+            "font-size": "34px",
+            "font-weight": "200",
+            "line-height": "44px",
             "color": "@color-swatch4",
             "letter-spacing": "inherit"
         },
         "font2": {
-            "font-family": "Open Sans",
+            "font-family": "Oswald",
             "font-size": "24px",
             "font-weight": "inherit",
-            "line-height": "36px",
-            "color": "@color-swatch4",
+            "line-height": "34px",
+            "color": "@color-swatch5",
             "letter-spacing": "inherit"
         },
         "font3": {
-            "font-family": "Open Sans",
-            "font-size": "20px",
-            "font-weight": "inherit",
-            "line-height": "34px",
-            "color": "@color-swatch4",
+            "font-family": "PT Serif",
+            "font-size": "18px",
+            "font-weight": "600",
+            "line-height": "28px",
+            "color": "@color-swatch5",
             "letter-spacing": "inherit"
         },
         "font4": {
-            "font-family": "Open Sans",
-            "font-size": "18px",
-            "font-weight": "inherit",
-            "line-height": "34px",
-            "color": "@color-swatch4",
+            "font-family": "PT Serif",
+            "font-size": "14px",
+            "font-weight": "600",
+            "line-height": "24px",
+            "color": "@color-swatch5",
             "letter-spacing": "inherit"
         },
         "font5": {
-            "font-family": "Lato",
-            "font-size": "16px",
+            "font-family": "PT Serif",
+            "font-size": "15px",
             "font-weight": "400",
-            "line-height": "28px",
-            "color": "@color-swatch4",
+            "line-height": "25px",
+            "color": "@color-swatch5",
             "letter-spacing": "inherit"
         },
         "font6": {
-            "font-family": "Lato",
-            "font-size": "14px",
+            "font-family": "Oswald",
+            "font-size": "18px",
             "font-weight": "400",
             "line-height": "28px",
             "color": "@color-swatch6",
-            "color-hover": "darken(@color-swatch6,30%)",
+            "color-hover": "darken(@color-swatch6,20%)",
             "letter-spacing": "inherit",
             "background-color": "@color-swatch1",
             "background-color-hover": "@color-swatch1"
         },
         "font7": {
-            "font-family": "Open Sans",
-            "font-size": "20px",
-            "font-weight": "inherit",
-            "line-height": "32px",
+            "font-family": "Oswald",
+            "font-size": "18px",
+            "font-weight": "300",
+            "line-height": "28px",
             "color": "@color-swatch1",
             "letter-spacing": "inherit",
             "background-color": "@color-swatch3",
-            "background-color-hover": "darken(@color-swatch3,20%)"
+            "background-color-hover": "darken(@color-swatch3,5%)"
         },
         "font8": {
-            "font-family": "Open Sans",
-            "font-size": "28px",
+            "font-family": "PT Serif",
+            "font-size": "18px",
             "font-weight": "400",
-            "line-height": "32px",
-            "color": "@color-swatch1",
+            "line-height": "28px",
+            "color": "@color-swatch5",
             "letter-spacing": "inherit"
         },
         "font9": {
-            "font-family": "Open Sans",
-            "font-size": "20px",
+            "font-family": "PT Serif",
+            "font-size": "18px",
             "font-weight": "400",
-            "line-height": "26px",
-            "color": "@color-swatch1",
+            "line-height": "28px",
+            "color": "@color-swatch5",
             "letter-spacing": "inherit"
         },
         "font10": {
-            "font-family": "Merriweather",
-            "font-size": "16px",
+            "font-family": "Oswald",
+            "font-size": "32px",
             "font-weight": "300",
-            "line-height": "24px",
+            "line-height": "42px",
             "color": "@color-swatch6",
             "letter-spacing": "inherit"
         }
