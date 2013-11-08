@@ -8,105 +8,23 @@
     <div class="wrapper clearfix">
         <div class="companyheader clearfix">
             {{widget('logo', 'logo', {"defaultlogo": asset('images/logo.png')})|raw}}
-            {{widget('companyname', 'companyname', {"business": "profile"})|raw}}
+            {{widget('companyname', 'companyname', {"business": "CERICE KITCHEN"})|raw}}
         </div>
-        {{widget('extendednavigation', 'navigationheader', {})|raw}}
+        <div class="phone">
+            {{widget('profile', 'headerprofilePhone', { 'profileType':'phone', 'phone':'078 514 928 365'})|raw}} 
+        </div>
+            {{widget('line', 'line1', {'thickness': 'inherit', 'padding': 'inherit', 'length':'inherit', 'align': 'center'})|raw}}
+        <div class="address">
+             {{widget('profile', 'headerprofileaddress', { 'profileType':'address', 'address':'34, Example Street, Bristol, BS45 3RU'})|raw}}
+        </div>     
+            {{widget('content', 'headercontent2', {"content":"<p>To book a table you can either ring us or fill in a simple form and we'll get back to you as soon as we can.</p>"})|raw}}
+        <div class="booking-button">
+            {{widget('button', 'button', {italic: false, text:'Booking form', 'align':'widget-align-center'})|raw}}
+        </div>
+          
+            {{widget('extendednavigation', 'navigationheader', {})|raw}}
+          
     </div>
-
-    <style>
-        .menu-name {
-            font-size: 2.5em;
-        }
-
-        .menu-items,
-        .menu-item-prices,
-        .menu-sections,
-        .menu-section-items,
-        .menu-section-item-prices {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .menu-header,
-        .menu-section-header {
-            margin-bottom: 2em;
-        }
-
-        .menu-item,
-        .menu-section-item {
-            margin-bottom: 3.5em;
-            position: relative;
-            background: #f7f7f7;
-            padding: 1em;
-            border-radius: 2px;
-        }
-
-        .menu-item-name,
-        .menu-section-item-name {
-            font-size: 1.65em;
-            margin-bottom: 0.5em;
-        }
-
-        .menu-section-name {
-            font-size: 2em;
-            margin-top: 2.5em;
-        }
-
-        .menu-item-description,
-        .menu-section-item-description {
-            margin-bottom: 1em;
-        }
-
-        .menu-item-promoted {
-            background: #f1f2eb;
-            border: 4px solid rgba(153, 153, 6, 0.15);
-        }
-
-        .menu-item-promoted:after {
-            content: "★";
-            font-size: 2em;
-            position: absolute;
-            top: 0.5em;
-            right: 0.5em;
-            color: rgb(153, 153, 6);
-        }
-
-        .standard-price {
-            float: right;
-            font-size: 1.15em;
-            font-style: italic;
-            color: #5c5c5c;
-        }
-
-        .dietary-icon {
-            display: inline-block;
-            height: 1em;
-            width: 1em;
-        }
-
-        .menu-section-item-dietary-props {
-            margin-top: 1em;
-        }
-
-        .menu-section-item-dietary-props .dietary-icon {
-            margin-right: 0.5em;
-        }
-
-        .vegetarian-icon {
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiPjx0aXRsZT52ZWdldGFyaWFuPC90aXRsZT48dGV4dCBza2V0Y2g6dHlwZT0iTVNUZXh0TGF5ZXIiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtZmFtaWx5PSJVYnVudHUiIGZpbGw9IiMxN0Q4OTMiPjx0c3BhbiB4PSIyIiB5PSIxNCI+VjwvdHNwYW4+PC90ZXh0Pjwvc3ZnPg==');
-        }
-
-        .glutenFree-icon {
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiPjx0aXRsZT5nbHV0ZW4tZnJlZTwvdGl0bGU+PHRleHQgc2tldGNoOnR5cGU9Ik1TVGV4dExheWVyIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iVWJ1bnR1IiBmaWxsPSIjNDk0QTUyIiBmb250LXdlaWdodD0iNDIwIj48dHNwYW4geD0iMCIgeT0iMTMiPkdmPC90c3Bhbj48L3RleHQ+PC9zdmc+');
-        }
-
-        dt,
-        dd {
-            display: inline-block;
-        }
-
-    </style>
 </header>
 
 {% set menu = plugins.menu %}
@@ -129,6 +47,11 @@
                 {% for item in menu.items %}
                     <li class="menu-item{% if item.promoted %} menu-item-promoted{% endif %}">
                         <h3 class="menu-item-name">{{ item.name }}</h3>
+
+                       {% if item.imageURL is not null %}
+                        <img class="menu-item-image" alt="" src="{{ item.imageURL }}">
+                       {% endif %}
+
                         {% if item.prices|length %}
                             <ol class="menu-item-prices">
                                 {% for price in item.prices %}
@@ -141,10 +64,6 @@
                                     </li>
                                 {% endfor %}
                             </ol>
-                        {% endif %}
-
-                        {% if item.imageURL is not null %}
-                            <img class="menu-item-image" alt="" src="{{ item.imageURL }}">
                         {% endif %}
 
                         {% if item.description is not null %}
@@ -263,16 +182,8 @@
 
 <footer>
     <div class="wrapper clearfix">
-        <div class="responsivecolumns columns-two-50-50">
-            <div class="column columns-two-left">
-                {{widget('content', 'footercolumn1', {"content":"<h2>Lorem Ip Soda</h2><p>Integer a Tortor Dui. Nullam nec ante mi. Morbi sodales urna sit amet mauris elementum quis rutrum lacus gravida. Proin feugia libero quis.</p>"})|raw}}
-            </div>
-            <div class="column columns-two-right">
-                {{widget('content', 'footercolumn2', {"content":"<h2>Aliquam Sodales</h2><p>Copyright © 2013. All Rights Reserved.</p>"})|raw}}
-
-                {{widget('socialicons', 'socialicons', {'googleplus': 'https://plus.google.com/101946323226233111530', 'linkedin':'http://www.linkedin.com/company/basekit', 'facebook': 'https://www.facebook.com/TeamBaseKit', 'twitter': 'https://twitter.com/basekit', 'youtube': 'https://www.youtube.com/user/TeamBaseKit', 'rss': 'http://blogdiseno.basekit.es/feed/'})|raw}}
-            </div>
-        </div>
+        {{widget('image', 'footercolumn1image', { 'src': asset('images/menuimage.png'), 'title': '', 'alt': '', 'fileName': 'menuimage.png', 'fileSize': '58kb', 'imageSize': '269 x 237', 'imageWidth': '269'})|raw}}
+       
     </div>
 </footer>
 
