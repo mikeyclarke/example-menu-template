@@ -119,6 +119,8 @@
                             <ol class="menu-sub-sections">
                                 {% include 'menu_subsection.twig' with {'sections': section.sections} %}
                             </ol>
+                        {% endif %}
+
 
                         {% if section.items|length %}
                             <ol class="menu-section-items">
