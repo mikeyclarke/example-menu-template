@@ -103,15 +103,22 @@
             <ol class="menu-sections">
                 {% for section in menu.sections %}
                     <li class="menu-section">
-                        <div class="menu-section-header">
-                            <h2 class="menu-section-name">{{ section.name }}</h2>
-                            {% if section.availability is not null %}
-                                <p class="menu-section-availability">{{ section.availability }}</p>
-                            {% endif %}
-                            {% if section.description is not null %}
-                                <p class="menu-section-description">{{ section.description }}</p>
-                            {% endif %}
-                        </div>
+                        {% if section.parentRef is null %}
+                            <div class="menu-section-header">
+                                <h2 class="menu-section-name">{{ section.name }}</h2>
+                                {% if section.availability is not null %}
+                                    <p class="menu-section-availability">{{ section.availability }}</p>
+                                {% endif %}
+                                {% if section.description is not null %}
+                                    <p class="menu-section-description">{{ section.description }}</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        {% if section.sections|length %}
+                            <ol class="menu-sub-sections">
+                                {% include 'menu_subsection.twig' with {'sections': section.sections} %}
+                            </ol>
 
                         {% if section.items|length %}
                             <ol class="menu-section-items">
